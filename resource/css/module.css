@@ -1,0 +1,326 @@
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src: local('Pretendard Black'),
+    url(../fonts/Pretendard-Black.woff2) format('woff2'),
+    url(../fonts/Pretendard-Black.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: swap;
+  src: local('Pretendard ExtraBold'),
+    url(../fonts/Pretendard-ExtraBold.woff2) format('woff2'),
+    url(../fonts/Pretendard-ExtraBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'),
+    url(../fonts/Pretendard-Bold.woff2) format('woff2'),
+    url(../fonts/Pretendard-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Pretendard SemiBold'),
+    url(../fonts/Pretendard-SemiBold.woff2) format('woff2'),
+    url(../fonts/Pretendard-SemiBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Pretendard Medium'),
+    url(../fonts/Pretendard-Medium.woff2) format('woff2'),
+    url(../fonts/Pretendard-Medium.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'),
+    url(../fonts/Pretendard-Regular.woff2) format('woff2'),
+    url(../fonts/Pretendard-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: swap;
+  src: local('Pretendard Light'),
+    url(../fonts/Pretendard-Light.woff2) format('woff2'),
+    url(../fonts/Pretendard-Light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-display: swap;
+  src: local('Pretendard ExtraLight'),
+    url(../fonts/Pretendard-ExtraLight.woff2) format('woff2'),
+    url(../fonts/Pretendard-ExtraLight.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: swap;
+  src: local('Pretendard Thin'),
+    url(../fonts/Pretendard-Thin.woff2) format('woff2'),
+    url(../fonts/Pretendard-Thin.woff) format('woff');
+}
+
+:root {
+  --color-main: #38D0C9;
+  --color-font: #262638;
+  --color-font-gray: #A9B1C0;
+  --gap: 48px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  letter-spacing: -0.025em;
+  font-family: 'Pretendard';
+  line-height: 1;
+}
+
+html,
+body {
+  font-size: 10px;
+  line-height: normal ;
+  letter-spacing: -0.025em;
+}
+
+.wrap {
+  min-height: 100vh;
+  font-size: 1.6rem;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img,
+video {
+  display: block;
+  object-fit: contain;
+}
+
+video{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+button,
+.btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  border-radius: 8px;
+  border: 0;
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-size: 1.6rem;
+  text-align: center;
+  color: var(--color-white);
+  line-height: normal;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-font);
+  font-size: 1.6rem;
+  line-height: 1;
+  outline: 0;
+  cursor: pointer;
+  resize: none;
+
+  &::placeholder {
+    color: var(--color-gray);
+  }
+
+  &.input-icn {
+    padding-left: 44px;
+  }
+
+  &:focus {
+    border: 1px solid var(--color-gray);
+    box-shadow: 4px 4px 6px rgba(169, 177, 192, 0.2);
+    text-indent: 8px;
+  }
+
+  &[type="checkbox"] {
+    display: none;
+  }
+
+  &[type="radio"] {
+    display: none;
+  }
+}
+
+/* checkbox */
+label.label-check {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  gap: 2px;
+  width: auto;
+  font-weight: 400;
+  line-height: 1.4;
+
+  &.laBel-border {
+    padding: 10px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+  }
+}
+
+label.label-check .checkBox {
+  flex-shrink: 0;
+  align-self: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/icn_check.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+label.label-check input[type="checkbox"]:checked+.checkBox {
+  background-image: url(../images/icn_check+check.svg);
+}
+
+label.label-tag {
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+
+  &:has(input[type="checkbox"]:checked) {
+    background-color: var(--color-main);
+    border: 1px solid var(--color-main);
+  }
+
+  &:has(input[type="checkbox"]:checked) span {
+    color: var(--color-white-hold);
+  }
+}
+/* checkbox end */
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+}
+
+.switch {
+  width: auto;
+  gap: 6px;
+  white-space: pre;
+  font-size: 1.4rem;
+}
+
+.switch label {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: 100px;
+  background-color: var(--color-gray2);
+}
+
+.switch label .ball {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 4px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: var(--color-white);
+}
+
+.switch label input:checked+.ball {
+  left: calc(100% - 16px);
+}
+
+/* ********** */
+
+/* popup animation */
+.popupAni.act {
+  animation: popupAni;
+  animation-duration: var(--duration);
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes popupAni {
+  0% {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  85% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* popup animation end */
+
+.con{
+  max-width: 1440px;
+  width: 100vw;
+  margin: 0 auto;
+}
