@@ -83,7 +83,14 @@
   --color-main: #38D0C9;
   --color-font: #262638;
   --color-font-gray: #A9B1C0;
+  --color-white: #ffffff;
+  --color-border: #D3DCEC;
   --gap: 48px;
+  --border-radius: 8px;
+  --duration: 0.3s;
+  --bg1: #38D0C9;
+  --bg2: #28BFB8;
+  --box-bg: #ffffff;
 }
 
 * {
@@ -133,6 +140,8 @@ a {
   cursor: pointer;
 }
 
+/* input, textarea button */
+/** button **/
 .btn-wrap {
   display: flex;
   align-items: center;
@@ -151,25 +160,107 @@ button,
   padding: 18px 24px;
   border-radius: 8px;
   border: 0;
+  background-color: var(--color-main);
   font-family: "Pretendard";
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   text-align: center;
   line-height: normal;
   cursor: pointer;
+
+  &.icn {
+    padding-left: 28px;
+    padding-right: 18px;
+  }
 
   &.no-style {
     padding: 0;
     background-color: inherit;
     border-radius: 0;
   }
-}
 
+  &.white {
+    background-color: var(--color-white);
+    color: var(--color-font);
+    border: 1px solid var(--color-border);
+  }
+
+  &.disabled {
+    background-color: rgba(52, 56, 65, 0.2);
+    border: 1px solid rgba(52, 56, 65, 0.3);
+  }
+
+  &.red {
+    background-color: #FF5858;
+    color: #ffffff;
+  }
+}
+/** button **/
+
+/** input **/
 label {
   cursor: pointer;
 }
 
-input,
+label.icn-input {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-font);
+
+  & input {
+    width: 100%;
+    padding: 14px;
+    padding-left: 0px;
+    border: none;
+  }
+
+  & .thumb{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 47px;
+    height: 47px;
+  }
+
+  & img {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+label:has(.search) {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  line-height: auto;
+  cursor: pointer;
+
+  & input {
+    width: 100%;
+    padding: 14px 16px;
+    padding-right: 6px;
+    border: none;
+  }
+
+  & button {
+    flex-shrink: 0;
+    width: 47px;
+    height: 47px;
+    background-color: inherit;
+    background-image: url(../images/icn-search.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    padding: 0;
+  }
+}
+
+label input,
 select,
 textarea {
   appearance: none;
@@ -187,17 +278,11 @@ textarea {
   resize: none;
 
   &::placeholder {
-    color: var(--color-gray);
+    color: var(--color-font-gray);
   }
 
   &.input-icn {
     padding-left: 44px;
-  }
-
-  &:focus {
-    border: 1px solid var(--color-gray);
-    box-shadow: 4px 4px 6px rgba(169, 177, 192, 0.2);
-    text-indent: 8px;
   }
 
   &[type="checkbox"] {
@@ -208,8 +293,9 @@ textarea {
     display: none;
   }
 }
+/** input end **/
 
-/* checkbox */
+/** checkbox **/
 label.label-check {
   display: flex;
   align-self: center;
@@ -218,87 +304,123 @@ label.label-check {
   width: auto;
   font-weight: 400;
   line-height: 1.4;
-
-  &.laBel-border {
-    padding: 10px 14px;
-    border: 1px solid var(--color-border);
-    border-radius: 100px;
-  }
+  transition: var(--duration);
 }
 
-label.label-check .checkBox {
+label.label-check .check-status{
   flex-shrink: 0;
   align-self: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  background-image: url(../images/icn_check.svg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-}
-
-label.label-check input[type="checkbox"]:checked+.checkBox {
-  background-image: url(../images/icn_check+check.svg);
-}
-
-label.label-tag {
-  padding: 8px 14px;
-  border-radius: 100px;
+  position: relative;
+  width: 18px;
+  height: 18px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-white);
+  border-radius: 100px;
+  transition: var(--duration);
+  overflow: hidden;
 
-  &:has(input[type="checkbox"]:checked) {
+  &::before{
+    content: "";
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
     background-color: var(--color-main);
-    border: 1px solid var(--color-main);
-  }
-
-  &:has(input[type="checkbox"]:checked) span {
-    color: var(--color-white-hold);
+    transition: var(--duration);
   }
 }
 
+label.label-check input:checked+.check-status {
+  border: none;
+  background-color: var(--color-main);
+
+  &::before{
+    width: 100%;
+    height: 100%;
+  }
+
+  &::after{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background-color: var(--color-white);
+    transition: var(--duration);
+  }
+}
 /* checkbox end */
 
-.flex {
+/** radio **/
+label.label-check input[type="checkbox"]+.check-status{
+  border-radius: 4px;
+}
+
+label.label-check input[type="checkbox"]:checked+.check-status::after{
+  width: 18px;
+  height: 18px;
+  background-image: url(../images/icn-radio-checked.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: inherit;
+}
+/** radio end **/
+
+/** switch **/
+.switch-wrap .switch{
+  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--gap);
-  width: 100%;
-}
-
-.switch {
-  width: auto;
-  gap: 6px;
-  white-space: pre;
-  font-size: 1.4rem;
-}
-
-.switch label {
-  position: relative;
-  width: 38px;
+  width: 36px;
   height: 20px;
   border-radius: 100px;
-  background-color: var(--color-gray2);
+  background-color: var(--color-border);
+  overflow: hidden;
+  &::before{
+    content: "";
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 3px;
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 100px;
+    background-color: #ffffff;
+    transition: var(--duration);
+    z-index: 2;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-radius: 100px;
+    background-color: var(--color-main);
+    opacity: 0;
+    transition: var(--duration);
+  }
 }
 
-.switch label .ball {
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
-  left: 4px;
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 100px;
-  background-color: var(--color-white);
+.switch-wrap input:checked+.switch{
+  &::before{
+    left: calc(100% - 17px);
+  }
+  &::after{
+    width: 100%;
+    opacity: 1;
+  }
 }
-
-.switch label input:checked+.ball {
-  left: calc(100% - 16px);
-}
-
-/* ********** */
+/** switch end **/
+/* input end */
 
 /* popup animation */
 .popupAni.act {
@@ -325,8 +447,15 @@ label.label-tag {
     transform: scale(1);
   }
 }
-
 /* popup animation end */
+
+/* usually */
+.flex {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+}
 
 .con {
   max-width: 1440px;
@@ -352,3 +481,66 @@ h2+.text {
   font-weight: 400;
   line-height: 1.6;
 }
+/* usually end */
+
+/* tab */
+.tab{
+  display: flex;
+  gap: calc(var(--gap) / 4);
+  width: 100%;
+}
+
+.tab :where(li, li button){
+  width: 100%;
+  max-width: inherit;
+}
+
+.tab li button{
+  padding: 12px 0;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  color: var(--color-font-gray);
+  transition: var(--duration);
+  &.act{
+    background-color: var(--color-main);
+    color: var(--color-font);
+  }
+}
+
+.tab-in-tab{
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.tab-in-tab li{
+  position: relative;
+  width: auto;
+  &:not(:last-child)::before{
+    content: "";
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: -18px;
+    width: 10px;
+    height: 10px;
+    background-image: url(../images/img-tabIntab-dots.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.tab-in-tab li button{
+  width: auto;
+  padding: inherit;
+  border: none;
+  border-radius: 0;
+  background-color: inherit;
+  color: var(--color-font-gray);
+  transform: var(--duration);
+  &.act{
+    color: var(--color-font);
+  }
+}
+/* tab end */

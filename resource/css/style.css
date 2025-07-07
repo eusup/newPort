@@ -153,16 +153,34 @@
 /* section03 end */
 
 /* section04 */
+.section04{
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 160px;
+        display: block;
+        width: 240px;
+        height: 240px;
+        border-radius: 500px;
+        background-color: #23B3AC;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: 60px;
+        right: 60px;
+        display: block;
+        width: 360px;
+        height: 360px;
+        border-radius: 500px;
+        background-color: #5BD5CF;
+    }
+}
+
 .section04.flat {
-    --bg1: #38D0C9;
-    --bg2: #28BFB8;
-    --box-bg: #ffffff;
-    --color-white: #ffffff;
-    --color-main: #38D0C9;
-    --color-border: #D3DCEC;
     --color-font: #094542;
-    --border-radius: 8px;
-    --duration: 0.3s;
 }
 
 .section04 {
@@ -175,14 +193,16 @@
 }
 
 .section04 .box {
-    gap: 36px;
+    position: relative;
+    gap: var(--gap);
     height: 100%;
     padding: 36px 48px;
     background-color: var(--box-bg);
     border-radius: 40px;
+    z-index: 1;
 }
 
-.section04 .box div {
+.section04 .box>div {
     width: 100%;
 }
 
@@ -191,8 +211,30 @@
     gap: 20px;
 }
 
-.section04 .box .component-wrap .btn {}
+.section04 .box .component-wrap .half {
+    gap: calc(var(--gap) / 4);
+    width: 100%;
+}
 
+.section04 .box .component-wrap .half>.flex{
+    gap: calc(var(--gap) / 6);
+    justify-content: flex-start;
+}
+
+.section04 .box .component-wrap .half>label {
+    width: 100%;
+}
 /* section04 end */
 
-@media (hover: hover) and (pointer: fine) {}
+@media (hover: hover) and (pointer: fine) {
+    label.label-check:hover {
+        transform: scale(1.1);
+    }
+
+    .tab li button:hover{
+        transform: translateY(-5px);
+        background-color: #E8FAF9;
+        border: 1px solid transparent;
+        color: var(--color-main);
+    }
+}
