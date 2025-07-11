@@ -82,6 +82,8 @@
 :root {
   --color-main: #38D0C9;
   --color-font: #262638;
+  --color-font10: rgba(52,56,65,0.1);
+  --color-shadow: #D9E1EF;
   --color-font-gray: #A9B1C0;
   --color-white: #ffffff;
   --color-border: #D3DCEC;
@@ -91,6 +93,17 @@
   --bg1: #38D0C9;
   --bg2: #28BFB8;
   --box-bg: #ffffff;
+
+  --font-size1: 14px;
+  --font-size2: 16px;
+  --font-size3: 18px;
+  --font-size4: 24px;
+  --font-size5: 36px;
+  --font-size6: 48px;
+  --font-size7: 54px;
+  --font-size8: 64px;
+  --font-size9: 72px;
+  --font-size10: 84px;
 }
 
 * {
@@ -270,6 +283,7 @@ textarea {
   padding: 14px 16px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  background-color: inherit;
   color: var(--color-font);
   font-size: 1.6rem;
   line-height: 1;
@@ -291,6 +305,10 @@ textarea {
 
   &[type="radio"] {
     display: none;
+  }
+
+  &:focus{
+    text-indent: 6px;
   }
 }
 /** input end **/
@@ -467,80 +485,28 @@ label.label-check input[type="checkbox"]:checked+.check-status::after{
   color: var(--color-main);
 }
 
-section {
+.abs{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+}
+
+section:not(.section01){
   padding: 120px 0;
 }
 
-h2 {
-  margin-bottom: 36px;
-  font-size: 5.4rem;
+h3{
+  font-size: var(--font-size7);
 }
 
-h2+.text {
-  font-size: 2.4rem;
-  font-weight: 400;
+h3+.text-box{
+  margin-top: 36px;
+  font-size: var(--font-size3);
   line-height: 1.6;
 }
+
+.text-box b{
+  font-size: var(--font-size5);
+}
 /* usually end */
-
-/* tab */
-.tab{
-  display: flex;
-  gap: calc(var(--gap) / 4);
-  width: 100%;
-}
-
-.tab :where(li, li button){
-  width: 100%;
-  max-width: inherit;
-}
-
-.tab li button{
-  padding: 12px 0;
-  border-radius: 100px;
-  border: 1px solid var(--color-border);
-  background-color: transparent;
-  color: var(--color-font-gray);
-  transition: var(--duration);
-  &.act{
-    background-color: var(--color-main);
-    color: var(--color-font);
-  }
-}
-
-.tab-in-tab{
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.tab-in-tab li{
-  position: relative;
-  width: auto;
-  &:not(:last-child)::before{
-    content: "";
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    right: -18px;
-    width: 10px;
-    height: 10px;
-    background-image: url(../images/img-tabIntab-dots.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-}
-
-.tab-in-tab li button{
-  width: auto;
-  padding: inherit;
-  border: none;
-  border-radius: 0;
-  background-color: inherit;
-  color: var(--color-font-gray);
-  transform: var(--duration);
-  &.act{
-    color: var(--color-font);
-  }
-}
-/* tab end */

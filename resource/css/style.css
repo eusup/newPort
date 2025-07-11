@@ -1,240 +1,200 @@
 /* section01 */
 .section01 {
     position: relative;
-    width: 100%;
     height: 100dvh;
+    padding: 0;
     background-image: url(../images/section01_bg.png);
     background-size: cover;
-    color: #ffffff;
-    font-size: 2.4rem;
-
-    animation-name: blur;
-    animation-duration: 0.3s;
-    animation-fill-mode: forwards;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: 2;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        transform: translateX(-50%);
-        bottom: 0;
-        left: 50%;
-        width: 312px;
-        height: 671px;
-        background-image: url(../images/section01_img01.png);
-        background-size: 100%;
-
-        animation-name: blur;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-    }
 }
 
-.section01 .flex {
+.section01 .cover {
     position: relative;
     display: flex;
     flex-direction: column;
+    gap: calc(var(--gap));
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    animation-name: back-blur;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    z-index: 1;
 }
 
-.section01 .flex h1 img {
+.section01 .cover h1 img{
+    width: 180px;
 
-    animation-name: showUp;
-    animation-duration: 0.6s;
+    animation-name: blurNtop;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
-@keyframes blur {
+.section01 .cover p{
+    position: relative;
+    font-size: var(--font-size4);
+    color: #fff;
+
+    animation-name: spacing;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.section01>img{
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 0;
+    left: 50%;
+}
+
+@keyframes back-blur {
     0% {
-        filter: blur(20px);
+        backdrop-filter: blur(20px);
     }
 
     100% {
+        backdrop-filter: blur(0);
+    }
+}
+
+@keyframes blurNtop{
+    0%{
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        filter: blur(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
         filter: blur(0px);
     }
 }
 
-@keyframes showUp {
-    0% {
-        transform: translateY(30px) scale(1.2);
-        opacity: 0;
+@keyframes spacing{
+    0%{
+        letter-spacing: 0;
     }
-
-    100% {
-        transform: translateY(0px) scale(1);
-        opacity: 1;
+    100%{
+        letter-spacing: 1em;
     }
 }
-
-/* section01 end */
+/* section01 ned */
 
 /* section02 */
-.section02 .con {
-    padding-bottom: 120px;
-    border-bottom: 1px solid var(--color-font);
+.section02{
+    padding-bottom: 0;
+}
+
+.section02 :where(h3,.text-box){
     text-align: center;
 }
 
-.section02 .con .text b {
-    font-size: 3.6rem;
+.section02 .text-box{
+    max-width: 944px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+    border-bottom: 1px solid var(--color-font);
 }
 
+.section02 .con{
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    filter: blur(20px);
+    transition: calc(var(--duration) * 2);
+}
+
+.section02.act .con{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+    filter: blur(0px);
+}
 /* section02 end */
 
 /* section03 */
-.section03 .flex {
-    position: relative;
+.section03 .con{
     align-items: flex-start;
+
+    gap: 10px;
+    transition: calc(var(--duration) * 2);
+    opacity: 0;
 }
 
-.section03 .flex .scroll {
-    width: 100%;
+.section03.act .con{
+    opacity: 1;
+    gap: calc(var(--gap)*2);
+}
 
-    &:first-child {
+.section03>.flex>div{
+    &:first-child{
         text-align: right;
     }
-}
 
-.section03 .flex .scroll h3 {
-    margin-bottom: 54px;
-    background-color: #ffffff;
-}
-
-.section03 .flex .scroll ul li {
-    margin-bottom: 36px;
-    font-size: 1.8rem;
-
-    &:last-child {
-        margin-bottom: 0;
+    &:last-child{
+        position: sticky;
+        top: 50px;
+        left: 0;
     }
 }
 
-.section03 .flex .scroll ul li:has(.btn.act) {
-    color: var(--color-font);
+.section03>.flex>div.list{
+    width: 100%;
 }
 
-.section03 .flex .scroll ul li .btn {
-    display: block;
-    text-align: inherit;
-    font-size: 1.8rem;
-    transition: 0.3s;
-}
-
-.section03 .flex .history {
+.section03>.flex .year{
     position: sticky;
-    top: 0;
-    bottom: 0;
-    right: 0;
+    top: 50px;
     left: 0;
+    flex-shrink: 0;
+    font-size: var(--font-size7);
+    font-weight: 800;
+    text-align: center;
+    & span{
+        display: block;
+        transform: rotate(90deg);
+    }
 }
 
-.section03 .flex .year p {
-    text-align: center;
-    font-size: 5.4rem;
-    font-weight: 800;
-    margin-bottom: 30px;
+.section03>.flex>div h4{
+    margin-bottom: 54px;
+    font-size: var(--font-size5);
+}
+
+.section03>.flex>div ul{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    font-size: var(--font-size4);
+}
+
+/** all .section03>.flex item **/
+.section03>.flex ul li{
+    color: var(--color-font-gray);
+    transition: var(--duration);
+    &.act{
+        color: var(--color-font);
+    }
+
+    & span{
+        opacity: 0.6;
+    }
+    &.act span{
+        opacity: 1;
+    }
+}
+/** all .section03>.flex item end **/
+
+.section03>.flex>div:first-child ul li.act{
+        transform: translateX(-10px);
+}
+
+.section03>.flex>div:last-child ul li.act{
+        transform: translateX(10px);
+}
+
+.section03>.flex .year li.act{
+        transform: scale(1.1);
 }
 
 /* section03 end */
-
-/* section04 */
-.section04{
-    position: relative;
-    &::before{
-        content: "";
-        position: absolute;
-        top: 40px;
-        left: 160px;
-        display: block;
-        width: 240px;
-        height: 240px;
-        border-radius: 500px;
-        background-color: #23B3AC;
-    }
-    &::after{
-        content: "";
-        position: absolute;
-        bottom: 60px;
-        right: 60px;
-        display: block;
-        width: 360px;
-        height: 360px;
-        border-radius: 500px;
-        background-color: #5BD5CF;
-    }
-}
-
-.section04.flat {
-    --color-font: #094542;
-}
-
-.section04 {
-    height: 100dvh;
-    background: linear-gradient(45deg, var(--bg1), var(--bg2));
-}
-
-.section04 .con {
-    height: 100%;
-}
-
-.section04 .box {
-    position: relative;
-    gap: var(--gap);
-    height: 100%;
-    padding: 36px 48px;
-    background-color: var(--box-bg);
-    border-radius: 40px;
-    z-index: 1;
-}
-
-.section04 .box>div {
-    width: 100%;
-}
-
-.section04 .box .component-wrap {
-    flex-direction: column;
-    gap: 20px;
-}
-
-.section04 .box .component-wrap .half {
-    gap: calc(var(--gap) / 4);
-    width: 100%;
-}
-
-.section04 .box .component-wrap .half>.flex{
-    gap: calc(var(--gap) / 6);
-    justify-content: flex-start;
-}
-
-.section04 .box .component-wrap .half>label {
-    width: 100%;
-}
-/* section04 end */
-
-@media (hover: hover) and (pointer: fine) {
-    label.label-check:hover {
-        transform: scale(1.1);
-    }
-
-    .tab li button:hover{
-        transform: translateY(-5px);
-        background-color: #E8FAF9;
-        border: 1px solid transparent;
-        color: var(--color-main);
-    }
-}
