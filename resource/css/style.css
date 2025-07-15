@@ -1,0 +1,200 @@
+/* section01 */
+.section01 {
+    position: relative;
+    height: 100dvh;
+    padding: 0;
+    background-image: url(../images/section01_bg.png);
+    background-size: cover;
+}
+
+.section01 .cover {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap));
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    animation-name: back-blur;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    z-index: 1;
+}
+
+.section01 .cover h1 img{
+    width: 180px;
+
+    animation-name: blurNtop;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.section01 .cover p{
+    position: relative;
+    font-size: var(--font-size4);
+    color: #fff;
+
+    animation-name: spacing;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.section01>img{
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 0;
+    left: 50%;
+}
+
+@keyframes back-blur {
+    0% {
+        backdrop-filter: blur(20px);
+    }
+
+    100% {
+        backdrop-filter: blur(0);
+    }
+}
+
+@keyframes blurNtop{
+    0%{
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        filter: blur(20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+        filter: blur(0px);
+    }
+}
+
+@keyframes spacing{
+    0%{
+        letter-spacing: 0;
+    }
+    100%{
+        letter-spacing: 1em;
+    }
+}
+/* section01 ned */
+
+/* section02 */
+.section02{
+    padding-bottom: 0;
+}
+
+.section02 :where(h3,.text-box){
+    text-align: center;
+}
+
+.section02 .text-box{
+    max-width: 944px;
+    margin: 0 auto;
+    padding-bottom: 120px;
+    border-bottom: 1px solid var(--color-font);
+}
+
+.section02 .con{
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    filter: blur(20px);
+    transition: calc(var(--duration) * 2);
+}
+
+.section02.act .con{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+    filter: blur(0px);
+}
+/* section02 end */
+
+/* section03 */
+.section03 .con{
+    align-items: flex-start;
+
+    gap: 10px;
+    transition: calc(var(--duration) * 2);
+    opacity: 0;
+}
+
+.section03.act .con{
+    opacity: 1;
+    gap: calc(var(--gap)*2);
+}
+
+.section03>.flex>div{
+    &:first-child{
+        text-align: right;
+    }
+
+    &:last-child{
+        position: sticky;
+        top: 50px;
+        left: 0;
+    }
+}
+
+.section03>.flex>div.list{
+    width: 100%;
+}
+
+.section03>.flex .year{
+    position: sticky;
+    top: 50px;
+    left: 0;
+    flex-shrink: 0;
+    font-size: var(--font-size7);
+    font-weight: 800;
+    text-align: center;
+    & span{
+        display: block;
+        transform: rotate(90deg);
+    }
+}
+
+.section03>.flex>div h4{
+    margin-bottom: 54px;
+    font-size: var(--font-size5);
+}
+
+.section03>.flex>div ul{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    font-size: var(--font-size4);
+}
+
+/** all .section03>.flex item **/
+.section03>.flex ul li{
+    color: var(--color-font-gray);
+    transition: var(--duration);
+    &.act{
+        color: var(--color-font);
+    }
+
+    & span{
+        opacity: 0.6;
+    }
+    &.act span{
+        opacity: 1;
+    }
+}
+/** all .section03>.flex item end **/
+
+.section03>.flex>div:first-child ul li.act{
+        transform: translateX(-10px);
+}
+
+.section03>.flex>div:last-child ul li.act{
+        transform: translateX(10px);
+}
+
+.section03>.flex .year li.act{
+        transform: scale(1.1);
+}
+
+/* section03 end */
